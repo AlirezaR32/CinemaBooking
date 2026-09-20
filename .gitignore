@@ -1,0 +1,47 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ASP.NET Core development certificates
+*.pfx
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local configuration
+appsettings.Local.json
+appsettings.Development.Local.json
+
+# Test results
+TestResults/
+coverage/
+coverage*.xml
+
+# Publish output
+publish/
