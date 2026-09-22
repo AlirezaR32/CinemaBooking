@@ -1,14 +1,19 @@
 public class Movie
 {
-    private string _name;
+    private string _name = "";
     private TimeOnly _time;
     private DateTime _dateOfCreate;
+
+    private Movie()
+    {
+    }
     public Movie(string name,TimeOnly time, DateTime dateOfCreate)
     {
         this._name = name;
         this._time = time;
         this._dateOfCreate = dateOfCreate;
     }
+    public int Id { get; set; }
     
     public string Name { get
         {
