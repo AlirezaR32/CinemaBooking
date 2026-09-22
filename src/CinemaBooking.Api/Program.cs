@@ -17,3 +17,7 @@ movie.UpdateDetails(
 
 Console.WriteLine(movie.Name);
 Console.WriteLine(movie.Time);
+
+Booking booking = new Booking("Alireza", "First Hall", 15, DateTime.Now);
+BookingService bookingService = new BookingService();
+bookingService.CreateBooking(booking);
