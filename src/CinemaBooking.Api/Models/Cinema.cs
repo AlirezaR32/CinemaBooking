@@ -2,7 +2,7 @@ namespace CinemaBooking.Api.Models;
 
 public class Cinema
 {
-    private Cinema()
+    public Cinema()
     {
     }
     public Cinema(string Name, List<Hall> Halls)
