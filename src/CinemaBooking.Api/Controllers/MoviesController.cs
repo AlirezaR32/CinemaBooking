@@ -33,4 +33,52 @@ public class MoviesController : ControllerBase
 
         return Ok(movie);
     }
+
+    [HttpGet("{id}")]
+    public async Task <ActionResult<Movie>> GetMovie(int id)
+    {
+        var movie = await _context.Movies.FindAsync(id);
+
+        if (movie == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(movie);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Movie>> UpdateMovie(int id, Movie movie)
+    {
+        var existingMovie = await _context.Movies.FindAsync(id);
+        if (existingMovie == null)
+        {
+            return NotFound();
+        }
+
+        existingMovie.UpdateDetails(movie.Name, movie.Time, null);
+        await _context.SaveChangesAsync();
+
+        return Ok(existingMovie);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<Movie>> DeleteMovie(int id)
+    {
+        var movie = await _context.Movies.FindAsync(id);
+        if (movie == null)
+        {
+            return NotFound();
+        }
+
+        _context.Movies.Remove(movie);
+        await _context.SaveChangesAsync();
+
+        return Ok(movie);
+    }
+
+    private bool MovieExists(int id)
+    {
+        return _context.Movies.Any(e => e.Id == id);
+    }
 }
