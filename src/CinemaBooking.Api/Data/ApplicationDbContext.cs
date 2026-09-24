@@ -15,6 +15,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Seat> Seats { get; set; }
     public DbSet<ShowTime> ShowTimes { get; set; }
     public DbSet<BookingSeat> BookingSeats { get; set; }
+    public DbSet<Booking> Bookings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +26,16 @@ public class ApplicationDbContext : DbContext
             .WithMany()
             .HasForeignKey(x => x.HallId)
             .OnDelete(DeleteBehavior.NoAction);
+        
+         modelBuilder.Entity<BookingSeat>()
+        .HasOne(x => x.Booking)
+        .WithMany(x => x.Seats)
+        .HasForeignKey(x => x.BookingId)
+        .OnDelete(DeleteBehavior.NoAction);
+        
+        modelBuilder.Entity<BookingSeat>()
+        .HasIndex(x => new { x.ShowTimeId, x.SeatId })
+        .IsUnique();
         modelBuilder.Entity<BookingSeat>()
         .HasIndex(x => new { x.ShowTimeId, x.SeatId })
         .IsUnique();
