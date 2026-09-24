@@ -1,0 +1,16 @@
+namespace CinemaBooking.Api.Models;
+
+public class ShowTime
+{
+    public int id { get; set; }
+
+    public DateTime StartTime { get; set; }
+    public int MovieId { get; set; }
+
+    public Movie? Movie { get; set; }
+
+    public int CinemaId { get; set; }
+
+    public Cinema? Cinema { get; set; }
+
+}
