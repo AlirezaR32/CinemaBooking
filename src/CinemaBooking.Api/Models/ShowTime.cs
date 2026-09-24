@@ -2,7 +2,7 @@ namespace CinemaBooking.Api.Models;
 
 public class ShowTime
 {
-    public int id { get; set; }
+    public int Id { get; set; }
 
     public DateTime StartTime { get; set; }
     public int MovieId { get; set; }

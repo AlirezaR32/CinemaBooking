@@ -24,7 +24,7 @@ public class BookingsController : ControllerBase
     {
         var showTime = await _context.ShowTimes
             .Include(x => x.Hall)
-            .FirstOrDefaultAsync(x => x.id == request.ShowTimeId);
+            .FirstOrDefaultAsync(x => x.Id == request.ShowTimeId);
 
         if (showTime == null)
         {

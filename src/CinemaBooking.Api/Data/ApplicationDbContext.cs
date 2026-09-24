@@ -37,9 +37,6 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<BookingSeat>()
         .HasIndex(x => new { x.ShowTimeId, x.SeatId })
         .IsUnique();
-        modelBuilder.Entity<BookingSeat>()
-        .HasIndex(x => new { x.ShowTimeId, x.SeatId })
-        .IsUnique();
     }
 
 }

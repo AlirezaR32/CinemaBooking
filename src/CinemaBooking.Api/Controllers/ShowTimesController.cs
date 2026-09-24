@@ -199,7 +199,7 @@ public class ShowTimesController : ControllerBase
     {
         var showTime = await _context.ShowTimes
             .Include(x => x.Hall)
-            .FirstOrDefaultAsync(x => x.id == showTimeId);
+            .FirstOrDefaultAsync(x => x.Id == showTimeId);
 
         if (showTime == null)
         {
