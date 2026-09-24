@@ -2,9 +2,12 @@ using CinemaBooking.Api.Data;
 using CinemaBooking.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CinemaBooking.Api.Controllers;
 
+
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class BookingsController : ControllerBase
