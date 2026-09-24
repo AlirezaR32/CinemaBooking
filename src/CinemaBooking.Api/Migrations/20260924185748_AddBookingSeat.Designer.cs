@@ -4,6 +4,7 @@ using CinemaBooking.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaBooking.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260924185748_AddBookingSeat")]
+    partial class AddBookingSeat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,9 +122,6 @@ namespace CinemaBooking.Api.Migrations
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HallId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
@@ -131,8 +131,6 @@ namespace CinemaBooking.Api.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("CinemaId");
-
-                    b.HasIndex("HallId");
 
                     b.HasIndex("MovieId");
 
@@ -197,12 +195,6 @@ namespace CinemaBooking.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CinemaBooking.Api.Models.Hall", "Hall")
-                        .WithMany()
-                        .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Movie", "Movie")
                         .WithMany()
                         .HasForeignKey("MovieId")
@@ -210,8 +202,6 @@ namespace CinemaBooking.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Cinema");
-
-                    b.Navigation("Hall");
 
                     b.Navigation("Movie");
                 });

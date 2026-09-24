@@ -194,4 +194,29 @@ public class ShowTimesController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("{showTimeId}/available-seats")]
+    public async Task<IActionResult> GetAvailableSeats(int showTimeId)
+    {
+        var showTime = await _context.ShowTimes
+            .Include(x => x.Hall)
+            .FirstOrDefaultAsync(x => x.id == showTimeId);
+
+        if (showTime == null)
+        {
+            return NotFound();
+        }
+
+        var bookedSeatIds = await _context.BookingSeats
+            .Where(x => x.ShowTimeId == showTimeId)
+            .Select(x => x.SeatId)
+            .ToListAsync();
+
+        var availableSeats = await _context.Seats
+            .Where(x => x.HallId == showTime.HallId)
+            .Where(x => !bookedSeatIds.Contains(x.Id))
+            .OrderBy(x => x.Number)
+            .ToListAsync();
+
+        return Ok(availableSeats);
+    }
 }

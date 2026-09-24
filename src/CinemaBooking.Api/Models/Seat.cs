@@ -10,9 +10,11 @@ public class Seat
     public Seat(int number)
     {
         this.Number = number;
-        this.IsBooked = false;
     }
     public int Id { get; set; }
     public int Number { get; set; }
-    public bool IsBooked { get; set; }
+
+    public int HallId { get; set; }
+
+    public Hall Hall { get; set; } = null!;
 }

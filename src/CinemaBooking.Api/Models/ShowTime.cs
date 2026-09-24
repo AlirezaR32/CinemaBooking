@@ -13,4 +13,6 @@ public class ShowTime
 
     public Cinema? Cinema { get; set; }
 
+    public int HallId { get; set; }
+    public Hall? Hall { get; set; }
 }
